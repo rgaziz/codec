@@ -51,8 +51,7 @@ Result CBase64::decode(const uint8_t *data, size_t data_size) {
     --data_size; 
   }
 
-  return Result(FromBase64(encoded_string.data()),
-                FromBase64(encoded_string.data() + encoded_string.size()));
+  return Result(FromBase64(data), FromBase64(data + data_size));
 }
 
 /* ========================================================================== */
