@@ -13,17 +13,15 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Modules")
 
 find_package(Boost REQUIRED
                    COMPONENTS
-                       system
-                       coroutine
-                       filesystem
-                       program_options)
+                       system)
 
 add_executable(${target} ${sources})
 
-target_link_libraries(${target}
-    Boost::program_options
-    Boost::filesystem
-    Boost::coroutine)
+target_link_libraries(${target} Boost::system)
+
+target_include_directories(${target}
+                             PUBLIC
+                               ${CMAKE_CURRENT_SOURCE_DIR})
 
 if (BUILD_TESTING)
     find_package(GTest REQUIRED)
