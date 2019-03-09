@@ -1,4 +1,4 @@
-// codec.h Gaziz Razhapov 6/12/2018
+// codec.h Gaziz Razhapov 9/03/2019
 /* ========================================================================== */
 #pragma once
 /* ========================================================================== */
@@ -11,11 +11,11 @@
 template <typename CodecImpl>
 class Codec : public CodecImpl {
  public:
-  static std::string encode(const uint8_t *_data, size_t _data_size);
-  static std::string encode(const char *_data, size_t _data_size);
+  static std::string encode(const uint8_t *data, size_t data_size);
+  static std::string encode(const char *data, size_t data_size);
 
-  static std::string decode(const uint8_t *_data, size_t _data_size);
-  static std::string decode(const char *_data, size_t _data_size);
+  static std::string decode(const uint8_t *data, size_t data_size);
+  static std::string decode(const char *data, size_t data_size);
 
   template <typename Result = std::string, typename T = std::vector<uint8_t>>
   static Result encode(T &_data);
@@ -61,42 +61,42 @@ inline const uint8_t *uchar_data(T &t) {
 
 /* ========================================================================== */
 template <typename CodecImpl>
-std::string Codec<CodecImpl>::encode(const uint8_t *_data, size_t _data_size) {
-  return CodecImpl::template encode<std::string>(_data, _data_size);
+std::string Codec<CodecImpl>::encode(const uint8_t *data, size_t data_size) {
+  return CodecImpl::template encode<std::string>(data, data_size);
 }
 
 /* ========================================================================== */
 template <typename CodecImpl>
-std::string Codec<CodecImpl>::encode(const char *_data, size_t _data_size) {
+std::string Codec<CodecImpl>::encode(const char *data, size_t data_size) {
   return CodecImpl::template encode<std::string>(
-      reinterpret_cast<const uint8_t *>(_data), _data_size);
+      reinterpret_cast<const uint8_t *>(data), data_size);
 }
 
 /* ========================================================================== */
 template <typename CodecImpl>
-std::string Codec<CodecImpl>::decode(const uint8_t *_data, size_t _data_size) {
-  return CodecImpl::template decode<std::string>(_data, _data_size);
+std::string Codec<CodecImpl>::decode(const uint8_t *data, size_t data_size) {
+  return CodecImpl::template decode<std::string>(data, data_size);
 }
 
 /* ========================================================================== */
 template <typename CodecImpl>
-std::string Codec<CodecImpl>::decode(const char *_data, size_t _data_size) {
+std::string Codec<CodecImpl>::decode(const char *data, size_t data_size) {
   return CodecImpl::template decode<std::string>(
-      reinterpret_cast<const uint8_t *>(_data), _data_size);
+      reinterpret_cast<const uint8_t *>(data), data_size);
 }
 
 /* ========================================================================== */
 template <typename CodecImpl>
 template <typename Result, typename T>
-inline Result Codec<CodecImpl>::encode(T &_data) {
-  return CodecImpl::template encode<Result>(uchar_data(_data), size(_data));
+inline Result Codec<CodecImpl>::encode(T &data) {
+  return CodecImpl::template encode<Result>(uchar_data(data), size(data));
 }
 
 /* ========================================================================== */
 template <typename CodecImpl>
 template <typename Result, typename T>
-inline Result Codec<CodecImpl>::decode(T &_data) {
-  return CodecImpl::template decode<Result>(uchar_data(_data), size(_data));
+inline Result Codec<CodecImpl>::decode(T &data) {
+  return CodecImpl::template decode<Result>(uchar_data(data), size(data));
 }
 
 /* ========================================================================== */

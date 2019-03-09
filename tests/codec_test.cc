@@ -1,4 +1,4 @@
-// Test base64.h Gaziz Razhapov 25/10/2018
+// Test base64.h Gaziz Razhapov 9/03/2019
 /* ========================================================================== */
 #include <vector>
 #include <string>
